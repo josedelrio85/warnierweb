@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Menú de edición
+{% endblock %}
+
+{% block description %}
+    <meta name="description" content="Menú de edición." />
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="col-xs-9 col-sm-9 col-lg-9">
+            <h2>Menú de edición Artículos</h2>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-lg-3" style="">
+            <a href="{{ path('articulo_new') }}"><h1 class="glyphicon glyphicon-plus"></h1></a>
+        </div>
+        
+        {% for art in articulos %}
+            <div class="col-xs-9 col-sm-9 col-lg-9">
+                <!-- articulo -->
+                <div class="col-md-12 prueba prueba-titulo" 
+                     style="background-image:url('{{ asset(art.imagenes[0].ruta) }}');">
+                    <a href="{{ path('articulo_edit', { 'id': art.id }) }}">
+                        <div class="link manolo">
+                            {{ art.titulo }}
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-12 prueba-titulo">
+                    <p>
+                        {{ art.contenidoBreve | raw }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-xs-3 col-sm-3 col-lg-3">
+                <!-- acciones sobre el articulo-->
+                <div style="width:100%; margin-top:7%;">
+                    <label class="checkbox-inline"><input type="checkbox" name="check{{art.id}}" 
+                                                          {% if art.activo == 1 %}
+                                                              checked="true"                                                       
+                                                          {% endif %}>Activo
+                    </label>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+        
+    <div class="container" style="margin-bottom:5%;">
+        {# display navigation #}
+        <div class="navigation" style="float:right">
+            {{ knp_pagination_render(articulos) }}        
+        </div>
+    </div>
+        
+        
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="message1"></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="message2"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;" id="modalYes">Sí </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalNo">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var check;
+
+            $('[name^="check"]').on('click', function () {
+
+                check = $(this);
+                //si checkbox no checked lanzar ajax para cambiar articulo a activo = 0
+                if ($(this).prop('checked') != true) {
+                    $('#message1').text("Desactivar artículo");
+                    $('#message2').text("Se va a desactivar el artículo, ¿estás de acuerdo?.");
+                } else {
+                    $('#message1').text("Activar artículo");
+                    $('#message2').text("Se va a activar el artículo, ¿estás de acuerdo?.");
+                }
+                $('#myModal').modal();
+            });
+
+            $('#modalYes').on('click', function () {
+                lanzaAjax(check);
+            });
+
+            $('#modalNo').on('click', function () {
+                if (check.prop('checked') == true) {
+                    check.prop('checked', false);
+                } else {
+                    check.prop('checked', true);
+                }
+            });
+        });
+
+        function lanzaAjax(checkbox) {
+            var id = checkbox.attr('name').substr(5);
+
+            $.ajax({
+                url: "/articulo/activa/" + id,
+                type: 'POST',
+                dataType: "text",
+                success: function (json) {
+                    var data = JSON.parse(json);
+                    if (data.activo == true) {
+                        checkbox.prop('checked', true);
+                    } else {
+                        checkbox.prop('checked', false);
+                    }
+                },
+                error: function (jqXHR, textStatus, error) {
+                    //alert( "error: " + jqXHR.responseText);
+                    alert("error: " + error);
+                }
+            });
+        }
+
+    </script>
+{% endblock %}

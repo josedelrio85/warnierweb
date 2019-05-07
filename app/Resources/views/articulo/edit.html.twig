@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="call-to-action">
+        {{ form_start(form) }}
+        <div class="container">	
+            <div class="row" id="#nuevaNoticia">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+
+                    <div class="margen-edit">
+                        {{ form_label(form.titulo) }}
+                        {{ form_errors(form.titulo) }}
+
+                        {{ form_widget(form.titulo, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-edit">
+                        {{ form_label(form.contenidoBreve) }}
+                        {{ form_errors(form.contenidoBreve) }}
+
+                        {{ form_widget(form.contenidoBreve, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-edit">
+                        {{ form_label(form.fecha) }}
+                        {{ form_errors(form.fecha) }}
+
+                        {{ form_widget(form.fecha, { 'attr': {'class': ''} }) }}
+                    </div>
+
+
+                    <div class="margen-edit">
+                        <h4> Imagen actual </h4>
+
+                        {% if articulo.imagenes[0].ruta %}
+                            <div class="prueba prueba-titulo"
+                                 style="background-image:url('{{ asset(articulo.imagenes[0].ruta) }}');">
+                            </div>
+                        {% endif %}
+
+                        {{ form_label(form.imagen) }}
+                        {{ form_errors(form.imagen) }}
+
+                        {{ form_widget(form.imagen, { 'attr': {'class': 'anchoTotal'} }) }}
+                    </div>
+
+                    <div class="margen-edit">
+                        {{ form_label(form.video) }}
+                        {{ form_errors(form.video) }}
+
+                        {{ form_widget(form.video, {required: false, attr: {class: 'form-control'}}) }}
+                    </div>
+
+                    <div class="margen-edit">
+                        {{ form_label(form.docAdjunto) }}
+                        {{ form_errors(form.docAdjunto) }}
+
+                        {% if articulo.subarticulo.documento is not null %}
+                            <p><a href="{{ path('download_file', {'id': articulo.subarticulo.id}) }}" target="_blank" alt="Ver documento adjunto">Ver documento adjunto actual</a></p>
+                        {% endif %}
+
+                        {{ form_widget(form.docAdjunto, {required: false, attr: {class: 'anchoTotal'}}) }}
+                    </div>
+
+
+                    <div class="margen-edit">
+                        {{ form_label(form.contenido) }}
+                        {{ form_errors(form.contenido) }}
+
+                        {{ form_widget(form.contenido, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-edit">
+                        {{ form_label(form.seccion) }}
+                        {{ form_errors(form.seccion) }}
+
+                        {{ form_widget(form.seccion, { 'attr': {'class': ''} }) }}
+                    </div>
+
+                    <div class="margen-edit" style="min-height:100px;">
+                        <input type="submit" value="Guardar" class="btn btn-default"/>                				
+                    </div>
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

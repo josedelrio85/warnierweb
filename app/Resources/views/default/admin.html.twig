@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Area Administración
+{% endblock %}
+
+
+{% block description %}
+    <meta name="description" content="Area administración" />
+{% endblock %}
+
+
+{% block body %}
+    <section class="call-to-action">
+        <div class="container">	
+            <div class="row">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+                    <h2>Area Administración</h2>
+                    
+                    <div class="margen-new">
+                        <h3><a href="{{ path('articulo_index') }}">Artículos</a></h3>
+                    </div>
+                    
+                    <div class="margen-new">
+                        <h3><a href="{{ path('clientes_index_admin') }}">Clientes</a></h3>
+                    </div>
+                    
+                    <div class="margen-new">
+                        <h3><a href="{{ path('partners_index_admin') }}">Partners</a></h3>
+                    </div>
+                    
+                    <div class="margen-new">
+                        <h3><a href="{{ path('fos_user_registration_register') }}">Registrar usuario</a></h3>
+                    </div>
+                    
+                    
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+        </div>
+    </section>                
+{% endblock %}

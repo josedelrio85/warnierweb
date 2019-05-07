@@ -1,0 +1,37 @@
+<style type="text/css">
+    .content-media--video {
+       background-color: #ddd;
+       display: block;
+       position: relative;
+       padding: 0 0 56.25% 0;
+    }
+
+    .content-media--video iframe {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    #featured-video {
+        transition: width .2s ease-in-out, height .2s ease-in-out, transform .38s ease-in-out;
+    }
+{#    @media screen and (min-width: 1120px) {
+     #featured-video.is-sticky {
+        transform: translateX(-80%);
+     }
+    }
+
+    @media screen and (min-width: 1300px) {
+     #featured-video.is-sticky {
+        transform: translateX(-115%);
+     }
+    }#}
+</style>
+
+    
+<!-- The YouTube video -->
+<figure class="content-media content-media--video" id="featured-media">
+  <iframe class="content-media__object" id="featured-video" src="https://www.youtube.com/embed/Jubl-TVgmAM?enablejsapi=1&rel=0&showinfo=1&controls=1" frameborder="0"></iframe>
+</figure>

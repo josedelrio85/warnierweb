@@ -1,0 +1,36 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: hl337.dinaserver.com
+    database_port: 3306
+    database_name: warnier_web
+    database_user: warnier_web
+    database_password: J2f3NvM0
+    mailer_transport: smtp
+    mailer_host: mail.warnier.com
+    mailer_user: info@warnier.com
+    mailer_password: Warnifo(2017)
+    mailer_port: 587      
+    mailer_encryption: 
+    mailer_auth_mode: 
+    secret: 1ff361b589e4a8c463ee86c45248aa36076d6810
+    evento: 0
+    destinatarioMailEvento: comercial@warnier.com
+    
+    #mailer_transport: gmail
+    #mailer_host: smtp.gmail.com
+    #mailer_user: warnierdev@gmail.com
+    #mailer_password: Warnier00
+    #mailer_port: 465      
+    #mailer_encryption: ssl
+    #mailer_auth_mode: login
+    
+    #mailer_transport: smtp
+    #mailer_host: mail.warnier.com
+    #mailer_user: info@warnier.com
+    #mailer_password: Warnifo(2017)
+    #mailer_port: 587 
+    #mailer_encryption: 
+    #mailer_auth_mode: 
+    
+    
+    

@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Escríbenos - Warnier
+{% endblock %}
+
+
+{% block description %}
+    <meta name="description" content="Solicita información acerca de cualquiera de nuestros servicios a través de este formulario." />
+{% endblock %}
+
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block richcard %}
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org/",
+          "@type": "Organization",
+          "name": "Warnier",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Venezuela 15-17 Bajo",
+            "addressLocality": "Betanzos",
+            "addressRegion": "A Coruña",
+            "postalCode": "15300"
+          },
+          "telephone": "981772120"
+        }
+    </script>
+{% endblock %}
+
+
+{% block body %}
+
+    <section class="call-to-action" data-aos="fade-zoom-in"
+             data-aos-offset="200" data-aos-easing="ease-in-sine"
+             data-aos-duration="600">
+        <div class="container">
+            <div class="row" style="margin:7%; min-height:550px;">
+                {% for label, flashes in app.session.flashbag.all %}
+                    {% for flash in flashes %}
+                        <div class="alert alert-{{ label }}">
+                            {{ flash }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+
+                {{ form_start(form) }}
+
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+                    <div class="margen-new">
+                        {{ form_label(form.nombre) }}
+                        {{ form_errors(form.nombre) }}
+
+                        {{ form_widget(form.nombre, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-new">
+                        {{ form_label(form.email) }}
+                        {{ form_errors(form.email) }}
+
+                        {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-new">
+                        {{ form_label(form.asunto) }}
+                        {{ form_errors(form.asunto) }}
+
+                        {{ form_widget(form.asunto, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-new" style="margin-top:5px;">
+                        {{ form_label(form.save) }}
+
+                        {{ form_widget(form.save, { 'attr': {'class': 'btn btn-default'} }) }}
+                    </div>
+
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+
+
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

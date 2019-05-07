@@ -1,0 +1,18 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <section class="call-to-action" data-aos="fade-zoom-in"
+             data-aos-offset="200" data-aos-easing="ease-in-sine"
+             data-aos-duration="600">
+        <div class="container">
+            <h3>{{ 'Registro confirmado '|trans({'%username%': user.username}) }}</h3>
+
+            {% if targetUrl %}
+                <p><a href="{{ targetUrl }}">{{ 'Volver a login'|trans }}</a></p>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock fos_user_content %}

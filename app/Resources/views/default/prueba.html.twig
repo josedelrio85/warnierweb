@@ -1,0 +1,266 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Warnier - Movilidad y Logística
+{% endblock %}
+
+{% block description %}
+    <meta name="description" content="Portal web de Warnier, tu aliado en soluciones de Movilidad, logística y Hardware Industrial." />
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+
+{% block body %}
+
+    <!-- cabecera clasica -->
+    {% if hayEvento == 0 %}
+        {{ render(controller('AppBundle:Default:cabeceraClasica')) }}
+    {% else %}
+        {{ render(controller('AppBundle:Default:cabeceraEvento')) }}
+    {% endif %}
+
+
+    <!-- glyphicon -->
+    <section class="call-to-action" data-aos="fade-zoom-in"
+             data-aos-offset="200" data-aos-easing="ease-in-sine"
+             data-aos-duration="600">
+        <div class="container">
+            <div class="row" style="margin-top: 30px; margin-bottom: 15px;">
+                <div class="col-md-3">
+                    <span class="glyphicon glyphicon-phone glyphicon-large"
+                          aria-hidden="true"></span>
+                    <h3><a href="{{ path('articulo_index_movilidad') }}">Movilidad</a></h3>
+                    <p>Moviliza los procesos de tu negocio de una forma segura,
+                        rápida y fiable.</p>
+                </div>
+                <div class="col-md-3">
+                    <span class="glyphicon glyphicon-headphones glyphicon-large"
+                          aria-hidden="true"></span>
+                    <h3><a href="{{ path('articulo_index_logistica') }}">Logística</a></h3>
+                    <p>Soluciones de logística para su almacén.</p>
+                </div>
+                <div class="col-md-3">
+                    <span class="glyphicon glyphicon-console glyphicon-large"
+                          aria-hidden="true"></span>
+                    <h3>Desarrollo web</h3>
+                    <p>Servicios de consultoría y desarrollo de portales web
+                        adaptados a sus necesidades.</p>
+                </div>
+                <div class="col-md-3">
+                    <span class="glyphicon glyphicon-wrench glyphicon-large"
+                          aria-hidden="true"></span>
+                    <h3><a href="{{ path('articulo_index_hardware') }}">Hardware industrial</a></h3>
+                    <p>Soluciones de calidad para superar los retos de su negocio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{ render(controller('AppBundle:Default:videoFlotante')) }}
+
+
+    <!-- imagenes -->
+    <section class="call-to-action" data-aos="fade-zoom-in"
+             data-aos-offset="200" data-aos-easing="ease-in-sine"
+             data-aos-duration="600">
+        <div class="container-fluid">
+            
+            <div class="row">
+                {% for mov in movilidad %}
+                    <div class="col-md-6 prueba"
+                         style="background-image:url('{{ asset(mov.rutaimagen) }}')"
+                         id="img_{{ mov.subarticulo.titulo | replace({' ':''})}}">
+                        <div class="link">
+                            {% if mov.url is null %}
+                                <a href="{{ path('subart_show', { 'idArt': mov.id }) }}">
+                                    {{ mov.titulo }}
+                                </a>
+                            {% else %}
+                                <div id="{{ mov.url|replace({('https://www.youtube.com/embed/'):''})}}" style="visibility:hidden;"></div>
+                                {{ mov.titulo }}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                {% for log in logistica %}
+                    <div class="col-md-4 prueba"
+                         style="background-image:url('{{ asset(log.rutaimagen) }}')"
+                         id="img_{{ log.subarticulo.titulo | replace({' ':''}) }}">
+                        <div class="link">
+                            {% if log.url is null %}
+                                <a href="{{ path('subart_show', { 'idArt': log.id }) }}">
+                                    {{ log.titulo }}
+                                </a>
+                            {% else %}
+                                <div id="{{ log.url|replace({('https://www.youtube.com/embed/'):''})}}" style="visibility:hidden;"></div>
+                                {{ log.titulo }}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <div class="row">
+                {% for noti in noticias %}
+                    <div class="col-md-4 prueba"
+                         style="background-image:url('{{ asset(noti.rutaimagen) }}')"
+                         id="img_{{ noti.subarticulo.titulo | replace({' ':''}) }}">
+                        <div class="link">
+                            {% if noti.url is null %}
+                                <a href="{{ path('subart_show', { 'idArt': noti.id }) }}">
+                                    {{ noti.titulo }}
+                                </a>
+                            {% else %}
+                                <div id="{{ noti.url|replace({('https://www.youtube.com/embed/'):''})}}" style="visibility:hidden;"></div>
+                                {{ noti.titulo }}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <!-- clientes -->
+    {{ render(controller('AppBundle:Default:clientesTemplate')) }}
+
+    <!-- partners -->
+    {{ render(controller('AppBundle:Default:partnersTemplate')) }}  
+    
+    
+    
+    <div id="oculto" class="videoOculto">
+        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+        <div id="player" class="center-block"></div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script>
+        
+        var player;
+        var player2; // 3. Youtube player object.
+
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var video = 'M7lc1UVf-VE';
+        video.h = '315';
+        video.w = '560';
+
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('player', {
+                height: video.h,
+                width: video.w,
+                videoId: video,
+                host: 'https://www.youtube.com',
+            });            
+        }
+
+            
+        $(document).ready(function () {    
+            //*****************************************************************
+            //*****************************************************************
+            //********      CODIGO VIDEO PRINCIPAL EMBEBIDO           *********
+            //*****************************************************************
+            //*****************************************************************
+            var $featuredMedia = $( "#featured-media" ); // 1. The Video Container.
+            var $featuredVideo = $( "#featured-video" ); // 2. The Youtube Video.
+            var $window = $( window ); // 1. Window Object.          
+            var top = $featuredMedia.offset().top; // 4. The video position from the top of the document;
+            var offset = Math.floor( top + ( $featuredMedia.outerHeight() / 2 ) ); //5. offset.
+            var player2State;
+
+            window.onYouTubeIframeAPIReady = function() {
+                player2 = new YT.Player( "featured-video", {
+                   events: {
+                     "onStateChange": onPlayerStateChange
+                   }
+                });
+            };
+
+            /**
+            * Run when the Youtube video state (play, pause, etc.) is changed.
+            *
+            * @param {Object} event The Youtube Object Event.
+            * @return {Void}
+            */
+            function onPlayerStateChange( event ) {
+                var isPlay  = 1 === event.data;
+                var isPause = 2 === event.data;
+                var isEnd   = 0 === event.data;
+
+                if ( isPlay ) {
+                   $featuredVideo.removeClass( "is-paused" );
+                   $featuredVideo.toggleClass( "is-playing" );
+                }
+
+                if ( isPause ) {
+                   $featuredVideo.removeClass( "is-playing" );
+                   $featuredVideo.toggleClass( "is-paused" );
+                }
+
+                if ( isEnd ) {
+                   $featuredVideo.removeClass( "is-playing", "is-paused" );
+                }
+
+                player2State = event.data;
+            }
+
+            $window
+                .on( "resize", function() {
+                   top = $featuredMedia.offset().top;
+                   offset = Math.floor( top + ( $featuredMedia.outerHeight() / 2 ) );
+                })
+
+                .on( "scroll", function() {
+                   $featuredVideo.toggleClass( "is-sticky",
+                     $window.scrollTop() > offset && $featuredVideo.hasClass( "is-playing" )                   );
+            });
+
+
+
+
+            $("div[id^='img_']").click(function () {
+                var link = $(this).children();
+                if(!link.children().is('a')){
+
+                    if(player2 != null && player2State > 0) {
+                        player2.stopVideo();
+                    }
+
+                    url = link.children().attr('id');
+                    player.loadVideoById(url);
+                    $("#oculto").show();
+                    player.playVideo();
+                }
+            });
+
+            $(document).keyup(function (event) {
+                if (event.which === 27 && $('#oculto').is(':visible')) {
+                    player.stopVideo();
+                    $("#oculto").hide();
+                }
+            });
+
+            $("#oculto").click(function () {
+                player.stopVideo();            
+                $(this).hide();
+            });
+            
+        })
+    </script>
+{% endblock %}
+

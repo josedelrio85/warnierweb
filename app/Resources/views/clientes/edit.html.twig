@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Editar {{coso}}.
+{% endblock %}
+
+
+{% block body %}
+
+    <section class="call-to-action">
+        {{ form_start(form) }}
+        <div class="container">	
+            <div class="row">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+                    
+                    <h2>Editar {{coso}}.</h2>
+                    
+    
+                    <div class="margen-new">
+                        {{ form_label(form.nombre) }}
+                        {{ form_errors(form.nombre) }}
+
+                        {{ form_widget(form.nombre, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-new">
+                        {% if cliente.rutaimagen %}
+                            <h3> Imagen actual </h3>
+                            
+                            <div class="col-md-12 prueba prueba-titulo">
+                                <img class="img_Cliente" src="{{ asset(cliente.rutaimagen.pathname) }}"  alt="{{ cliente.nombre }}"/>
+                            </div>
+                            
+                            {{ form_widget(form.rutaimagen, { 'attr': {'class': 'anchoTotal'} }) }}
+                            
+                        {% else %}                        
+                            {{ form_label(form.rutaimagen) }}
+                            {{ form_errors(form.rutaimagen) }}
+
+                            {{ form_widget(form.rutaimagen, { 'attr': {'class': 'anchoTotal'} }) }}
+                        {% endif %}
+
+                    </div>
+
+                    <div class="margen-new">
+                        {{ form_label(form.activo) }}
+                        {{ form_errors(form.activo) }}
+
+                        {{ form_widget(form.activo, { 'attr': {'class': ''} }) }}
+                    </div>
+                    
+                     <div class="margen-new">
+                        {{ form_label(form.save) }}
+
+                        {{ form_widget(form.save, { 'attr': {'class': 'btn btn-default'} }) }}
+                    </div>
+
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

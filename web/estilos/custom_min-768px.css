@@ -1,0 +1,60 @@
+.prueba{
+    min-height:320px;
+}
+
+.textoIndexArticulo{
+    min-height:250px;
+}
+
+#footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   width:100%;
+}
+
+
+.navbar-toggle{}
+
+
+#bs-example-navbar-collapse-1{}
+
+.dropdown-menu {
+	background: #FFF;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+	color:#FFF;
+}
+
+.navbar-inverse, .navbar-nav .dropdown-menu li a:hover {
+/* 	background: #; */
+}
+
+
+.navbar-inverse .navbar-nav li a{
+	font-size:14px;
+}
+
+
+.videoOculto > iframe{
+	width:560px; 
+	height:315px;
+}
+
+/* VIDEO EMBEBIDO */
+/** Use .sticky */
+#featured-video.is-sticky {
+    position: fixed;
+    top: 15px;
+    left: auto;
+    max-width: 280px;
+    max-height: 158px;
+    width: 280px;
+    height: 158px;
+    z-index:100;
+}
+
+.center-block{
+    margin-top:30%;
+}

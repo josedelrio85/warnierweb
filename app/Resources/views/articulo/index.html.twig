@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if variable is defined %}
+        {{ variable }}
+    {% else %}
+        Servicios de {{ servicio }}  - Warnier
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if variable is defined %}
+        <meta name="description" content="Estas son las últimas novedades y noticias sobre nuestras actividades y eventos." />
+    {% else %}
+        <meta name="description" content="Soluciones de {{ servicio }}  - Warnier" />
+    {% endif %}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        {% for key,value in articulos %}
+
+            <div class="col-md-12 prueba prueba-titulo"
+                 style="background-image:url('{{ asset(value.imagenes[0].ruta) }}');"
+                 data-aos="fade-right" data-aos-anchor-placement="top-center">
+                <a href="{{ path('subart_show', { 'idArt': value.id }) }}">
+                    <div class="link">
+                        {{ value.titulo }}
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-12 textoIndexArticulo">
+                <p>
+                    {{ value.contenidoBreve | raw }}
+                </p>
+            </div>
+
+        {% endfor %}
+
+    </div>
+        
+    <div class="container" style="margin-bottom:5%;">
+        {# display navigation #}
+        <div class="navigation" style="float:right">
+            {{ knp_pagination_render(articulos) }}        
+        </div>
+    </div>
+{% endblock %}

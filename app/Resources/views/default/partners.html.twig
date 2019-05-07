@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Principales partners - Warnier
+{% endblock %}
+
+{% block description %}
+<meta name="description" content="Los partners con los que colaboramos." />
+{% endblock %}
+
+
+{% block stylesheets %}
+{% endblock %}
+
+
+{% block body %}
+
+{{ render(controller('AppBundle:Default:partnersTemplate')) }}
+    
+{% endblock %}

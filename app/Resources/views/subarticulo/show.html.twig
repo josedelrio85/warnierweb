@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ subarticulo.titulo }}
+{% endblock %}
+
+{% block richcard %}
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "NewsArticle",
+      "headline": {{ subarticulo.titulo|json_encode|raw }},
+      "datePublished": "{{ subarticulo.fecha|date("d/m/Y")}}",
+      "dateModified": "{{ subarticulo.fecha|date("d/m/Y")}}",
+      "mainEntityOfPage": "http://www.warnier.com",
+      "description": {{subarticulo.idArticulo.titulo|json_encode|raw }},
+      "image": {
+        "@type": "ImageObject",
+        "height": "1280",
+        "width": "1920",
+        "url": "http://www.warnier.com{{ asset(imagen.ruta) }}"
+      },
+      "author": "Warnier",
+      "publisher": {
+        "@type": "Organization",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "http://warnier.com/imagenes/warnier/nombreWarnier_320.png"
+        },
+        "name": "Warnier"
+      },
+      "articleBody": {{ subarticulo.contenido|json_encode|raw }}
+    }
+    </script>
+{% endblock %}
+
+{% block description %}
+
+    <meta name="description" content="Nuestras soluciones {{ subarticulo.titulo }}" />
+{% endblock %}
+
+
+{% block body %}
+    <section class="call-to-action">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-1"></div>			
+                <div class="col-md-10">
+                    <div class="prueba prueba-titulo"
+                         style="background-image:url('{{ asset(imagen.ruta) }}');"
+                         data-aos="fade-right" data-aos-anchor-placement="top-center">
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>			
+                <div class="col-md-10">
+                    <div id="showSubarticulo">
+                        
+                        {% if hayEvento == 0 %}
+                            <h3>
+                                {{ subarticulo.titulo }}
+                            </h3>
+                        {% else %}
+                            <h3>
+                                <a href="{{ path('evento_log_mov') }}" target="_blank" alt="{{ subarticulo.titulo }}">{{ subarticulo.titulo }}</a>
+                            </h3>
+                        {% endif %}
+
+                        
+
+                        {% autoescape %}
+                            {{ subarticulo.contenido |raw }}
+                        {% endautoescape %}
+
+
+                    </div>
+
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            
+            {% if recursos is not null and recursos is not empty %}
+                <div class="row" style="min-height:225px;">
+                    <div class="col-md-1"></div>	
+                    <div class="col-md-10" >
+                        <ul>
+                        <h4 style="text-align:left; margin-left: -14px;">Ejemplos de casos de estudio</h4>
+                        {% for rec in recursos %}
+                            <div class="col-md-6">
+                            <li><h5><a href="{{ path('download_recurso', {'id': rec.id}) }}" target="_blank" alt="Descargue aquí el catálogo informativo">{{ rec.titulo }}</a></h5></li>
+                            </div>
+                        {% endfor %}     
+                    </ul>
+                    </div>	
+                    <div class="col-md-1"></div>		
+                </div>
+            {% endif %}
+            
+            
+            {% if subarticulo.video is not null %}
+                <div class="row">
+                    <div class="col-md-1"></div>			
+                    <div class="col-md-10" style="min-height:300px;">
+                        <div style="margin-top: 15px; margin-bottom: 60px;">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="560" height="315" src="{{ subarticulo.video }}"
+                                        frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            {% endif %}
+
+            
+            {% if subarticulo.documento is not null %}
+                <div class="row">
+                    <div class="col-md-1"></div>			
+                    <div class="col-md-10" style="min-height:225px;">
+                        <h4><a href="{{ path('download_file', {'id': subarticulo.id}) }}" target="_blank" alt="Descargue aquí el catálogo informativo">Descargue aquí el catálogo informativo</a></h4>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+{% endblock %}

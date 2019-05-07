@@ -1,0 +1,39 @@
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand text-hide" href="{{ path('homepage') }}">
+			<img id="logoCabecera" src="{{ asset('imagenes/warnier/nombreWarnier_320.png') }}">Warnier</a>
+		</div>
+
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="{{ path('articulo_index_logistica') }}">{{ seccions[0].titulo }}</a></li>
+				<li><a href="{{ path('articulo_index_movilidad') }}">{{ seccions[1].titulo }}</a></li>
+				<li><a href="{{ path('articulo_index_hardware') }}">{{ seccions[2].titulo }}</a></li>
+				<li><a href="{{ path('articulo_index_noticias') }}">{{ seccions[3].titulo }}</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Empresa<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="{{ path('clientes') }}">Clientes</a></li>
+						<li><a href="{{ path('partners') }}">Partners</a></li>
+						<li><a href="{{ path('donde') }}">Dónde estamos</a></li>
+						<li><a href="{{ path('contacto') }}">Contacto</a></li>
+                                                {%if app.user %}
+                                                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                                                {%endif%}
+                                                
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

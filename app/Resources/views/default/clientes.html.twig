@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+Clientes que confían en nosotros - Warnier
+{% endblock %}
+
+{% block description %}
+<meta name="description" content="Algunos de los clientes que confían en las soluciones aportadas por Warnier." />
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+
+{% block body %}
+
+{{ render(controller('AppBundle:Default:clientesTemplate')) }}
+    
+{% endblock %}

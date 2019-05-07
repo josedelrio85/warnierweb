@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="d7E3WRi6GcT9aA3lLYS0delbsYAvJjHHa5oc6dpi3a4" />
+
+<title>
+{% block title %}
+{% endblock %}
+</title>
+
+{% block description %}
+{% endblock %}
+
+{% block richcard %}
+{% endblock %}
+    
+<link rel="icon" type="image/x-icon" href="{{ asset('imagenes/warnier/favicon.ico') }}" />
+<link rel="stylesheet"
+	href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+<link rel="stylesheet"
+	href="{{ asset('assets/vendor/aos/dist/aos.css') }}">
+
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+
+
+	
+<!-- Media queries -->
+<link rel="stylesheet" media="(min-width: 320px)"
+	href="{{asset('estilos/custom_min-320px.css') }}">
+<link rel="stylesheet" media="(min-width: 768px)"
+	href="{{asset('estilos/custom_min-768px.css') }}">
+<link rel="stylesheet" media="(min-width: 1280px)"
+	href="{{asset('estilos/custom_min-1280px.css') }}">
+<link rel="stylesheet" media="(min-width: 1920px)"
+	href="{{asset('estilos/custom_min-1920px.css') }}">
+
+
+{% block stylesheets %}
+
+{% endblock %}
+
+<script src="{{ asset('assets/vendor/aos/dist/aos.js') }}"
+	type="text/javascript"></script>
+<script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"
+	type="text/javascript"></script>
+<script
+	src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"
+	type="text/javascript"></script>
+<script
+	src="{{ asset('js/js.cookies.js') }}"
+	type="text/javascript"></script>
+</head>
+<body>
+
+	{% block header %}
+	{{ render(controller('AppBundle:Default:header')) }}
+	{% endblock %}
+
+	{% block body %}
+	{% endblock %}
+	
+	{% block cookies %}
+	{{ render(controller('AppBundle:Default:cookies')) }}
+	{% endblock %}
+
+	{% block footer %}
+	{{ render(controller('AppBundle:Default:footer')) }}
+	{% endblock %}
+
+	{% block javascripts %}
+	{% endblock %}
+
+	<script type="text/javascript">
+		AOS.init({
+			offset : 120,
+			delay : 0,
+			easing : 'ease',
+			duration : 400,
+			disable : window.innerWidth < 768, // Condition when AOS should be disabled. e.g. 'mobile'
+			once : false,
+			startEvent : 'DOMContentLoaded'
+		});
+
+		$(document).ready(function() {
+	        
+                    $(window).scroll(function() {
+
+                        $("#footer" ).css( "display", "none" ).fadeOut( "slow" );
+
+                            if($(window).scrollTop() + $(window).height() === $(document).height()) {
+                                    $("#footer" ).css( "display", "inline" ).fadeIn( "fast" );
+                            }
+                    });
+
+
+                    $("#cerrarCookie").click(function(){
+                        $("#cookies").hide();				
+                    });    	
+  
+		});
+
+		
+		var visited = Cookies.get('visited');
+		if(visited === null){
+			$("#cookies").show();	
+		}
+		Cookies.set('visited','yes',{expires: 1, path: '/'});
+                  
+                
+	</script>
+</body>
+</html>

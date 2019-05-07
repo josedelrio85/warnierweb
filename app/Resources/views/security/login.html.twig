@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Area Login
+{% endblock %}
+
+
+{% block description %}
+    <meta name="description" content="Area login." />
+{% endblock %}
+
+{% block header %}
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span
+                        class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand text-hide" href="{{ path('homepage') }}">
+                    <img id="logoCabecera" src="{{ asset('imagenes/warnier/nombreWarnier_320.png') }}">Warnier</a>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block body %}
+    <section class="call-to-action" data-aos="fade-zoom-in"
+             data-aos-offset="200" data-aos-easing="ease-in-sine"
+             data-aos-duration="600">
+        <div class="container">
+
+            <div class="row" style="margin:5%;">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+                    {#% if error %#}
+                    <div>{#{ error.messageKey|trans(error.messageData,'security') }#}</div>
+                    {#% endif %#}
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+
+            {{ form_start(form) }}
+
+            <div class="col-sm-1 col-lg-3"></div>
+            <div class="col-xs-12 col-sm-10 col-lg-6">
+                <div class="margen-new">
+                    {{ form_label(form.username) }}
+                    {{ form_errors(form.username) }}
+
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="margen-new">
+                    {{ form_label(form.password) }}
+                    {{ form_errors(form.password) }}
+
+                    {{ form_widget(form.password, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+
+                <div class="margen-new" style="margin-top:5px;">
+                    {#{ form_label(form.login) }}
+
+                    {{ form_widget(form.login, { 'attr': {'class': 'btn btn-default'} }) }#}
+                    <!--<button id="usuario_login" class="btn btn-default" type="submit" name="usuario[login]">Login</button>-->
+                     
+                    <input type="submit" value="Enviar" class="btn btn-default"/>                				
+                      
+                </div>
+
+                <!--<input type="hidden" name="_csrf_token" value="{#{ csrf_token('authenticate') }#}">-->
+
+            </div>
+            <div class="col-sm-1 col-lg-3"></div>
+
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}

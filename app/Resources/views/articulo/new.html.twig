@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="call-to-action">
+        {{ form_start(form) }}
+        <div class="container">	
+            <div class="row" id="#nuevaNoticia">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+
+                    <div class="margen-new">
+                        {{ form_label(form.titulo) }}
+                        {{ form_errors(form.titulo) }}
+
+                        {{ form_widget(form.titulo, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-new">
+                        {{ form_label(form.contenidoBreve) }}
+                        {{ form_errors(form.contenidoBreve) }}
+
+                        {{ form_widget(form.contenidoBreve, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-new">
+                        {{ form_label(form.fecha) }}
+                        {{ form_errors(form.fecha) }}
+
+                        {{ form_widget(form.fecha, { 'attr': {'class': ''} }) }}
+                    </div>
+
+
+                    <div class="margen-new">
+                        {{ form_label(form.imagen) }}
+                        {{ form_errors(form.imagen) }}
+
+                        {{ form_widget(form.imagen, { 'attr': {'class': 'anchoTotal'} }) }}
+                    </div>
+
+                    <div class="margen-new">
+                        {{ form_label(form.video) }}<span id="infoVideo" class="glyphicon glyphicon-question-sign"></span>
+                        {{ form_errors(form.video) }}
+
+                        {{ form_widget(form.video, {required: false, attr: {class: 'form-control'}}) }}
+                    </div>
+
+
+                    <div class="margen-new">
+                        {{ form_label(form.docAdjunto) }}
+                        {{ form_errors(form.docAdjunto) }}
+
+
+                        {{ form_widget(form.docAdjunto, {required: false, attr: {class: 'anchoTotal'}}) }}
+                    </div>
+
+
+                    <div class="margen-new">
+                        {{ form_label(form.contenido) }}<span id="infoContenido" class="glyphicon glyphicon-question-sign"></span>
+                        {{ form_errors(form.contenido) }}
+
+                        {{ form_widget(form.contenido, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    <div class="margen-new">
+                        {{ form_label(form.seccion) }}
+                        {{ form_errors(form.seccion) }}
+
+                        {{ form_widget(form.seccion, { 'attr': {'class': ''} }) }}
+                    </div>
+
+                    <div class="margen-edit" style="min-height:100px;">
+                        <input type="submit" value="Guardar" class="btn btn-default"/>                				
+                    </div>         				
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </section>
+        
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="message1"></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="message2"></p>
+                    <p id="message3"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalAceptar">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {  
+            $('.glyphicon-question-sign').on('mouseover', function(){
+               $(this).css('color','blue');
+               $(this).css('cursor','pointer');
+            });
+            
+            $('.glyphicon-question-sign').on('mouseout', function(){
+               $(this).css('color','grey');
+            });
+            
+            $('#infoVideo').on('click', function(){
+               $('#myModal').modal();
+               $('#message1').text('Información sobre añadir URL video.');
+               $('#message2').text('Para adjuntar un video en la web y que se viusalice de forma correcta tendrá que tener la siguiente estructura:');
+               $('#message2').append('<br>');
+               $('#message2').append('<br>');
+               $('#message2').append('https://www.youtube.com/embed/YTBhFfgHurs');
+               $('#message2').append('<br>');
+               $('#message2').append('<br>');
+               $('#message2').append('Es decir, no sirve usar la url que aparece en la barra de navegación del navegador que utilices.');
+               $('#message2').append('<br>');
+               $('#message2').append('<br>');
+               $('#message2').append('Para obtener este formato de URL habrá que ir a la página de Youtube del vídeo que se quiera añadir, y debajo del video, habrá que pinchar en la sección "Compartir". ');
+               $('#message2').append('A continuación, haciendo click en la sección "Insertar" aparecerá una cadena HTML, de la cual habrá que copiar la sección "src" que pone:');
+               $('#message2').append('<br>');
+               $('#message2').append('<br>');
+               $('#message2').append('      https://www.youtube.com/embed/JrtS9FTKvXs        ');
+               $('#message2').append('<br>');
+               $('#message2').append('<br>');
+               $('#message2').append('Esta será la cadena que se utilizará para añadir el video correctamente.');
+               $('#message2').append('<br>');
+               $('#message3').hide();
+            });
+            
+            $('#infoContenido').on('click', function(){
+                $('#message3').show();
+                $('#myModal').modal();
+                $('#message1').text('Información sobre añadir contenido formateado.');
+                $('#message2').text('Para añadir contenido formateado habrá que introducir el texto con etiquetas HTML.');
+                $('#message2').append('<br>');
+                $('#message2').append('<br>');
+                $('#message2').append('Para ver un ejemplo de texto formateado en HTML, copia el siguiente texto y pégalo en la URL indicada más abajo:');
+                $('#message2').append('<br>');
+                $('#message2').append('<br>');
+                $('#message2').append('http://www.onlinehtmleditor.net/');
+                $('#message3').text('<h4>Solucion de Voz para la Cadena de Suministros</h4>\n\
+                    <p>La curva de aprendizaje es inmediata, lo que permite una rotación de personal muy fluida ante cualquier pico de trabajo o cambio.</p>\n\
+                    \n\<ul>\n\
+                    <li>Importante incremento de productividad</li>\n\
+                    <li>Reducción de errores y costes</li>\n\
+                    <li>Optimización de procesos</li>\n\
+                    <li>Facilidad de uso </li>\n\
+                    <li>Favorecer la ergonomía</li>\n\
+                    <li>Disminución de riesgos laborales</li>\n\
+                    </ul>\n\
+                    <p>La curva de aprendizaje es inmediata, lo que permite una rotación de personal muy fluida ante cualquier pico de trabajo o cambio.</p>\n\
+                    <p>Por otro lado somos el Partner de HONEYWELL/INTERMEC mas importante de la península con servicio técnico propio oficial en toda España</p>');
+                
+            });
+            
+        });
+    </script>
+{% endblock %}

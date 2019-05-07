@@ -1,0 +1,10 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<section class="call-to-action" data-aos="fade-zoom-in"
+         data-aos-offset="200" data-aos-easing="ease-in-sine"
+         data-aos-duration="600">
+    <div class="container">
+        <p>{{ 'Nombre de usuario'|trans }}: {{ user.username }}</p>
+        <p>{{ 'Email'|trans }}: {{ user.email }}</p>
+    </div>
+</section>

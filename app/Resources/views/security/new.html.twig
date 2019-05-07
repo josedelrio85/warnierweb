@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Nuevo usuario
+{% endblock %}
+
+
+{% block description %}
+    <meta name="description" content="Crear un nuevo usuario." />
+{% endblock %}
+
+{% block header %}
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span
+                        class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand text-hide" href="{{ path('homepage') }}">
+                    <img id="logoCabecera" src="{{ asset('imagenes/warnier/nombreWarnier_320.png') }}">Warnier</a>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block body %}
+    <section class="call-to-action" data-aos="fade-zoom-in"
+             data-aos-offset="200" data-aos-easing="ease-in-sine"
+             data-aos-duration="600">
+        <div class="container">
+            
+            <h3>Registro de usuario</h3>
+            
+            <div class="row" style="margin:5%;">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+                    {% if error %}
+                        <div>{{ error.messageKey|trans(error.messageData,'security') }}</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+                
+            {{ form_start(form, {'action': path('usuario_create'), 'name': 'usuario_create' }) }}
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('usuario_create') }}" />
+            
+            <div class="row" style="margin:5%;">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+                    {{ form_label(form.username) }}
+                    {{ form_errors(form.username) }}
+
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+
+            <div class="row" style="margin:5%;">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+
+                    {{ form_label(form.password) }}
+                    {{ form_errors(form.password) }}
+
+                    {{ form_widget(form.password, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+
+            <div class="row" style="margin:5%;">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+                    {{ form_row(form.email.first) }}
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+
+            <div class="row" style="margin:5%;">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+                    {{ form_row(form.email.second) }}
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+
+            <div class="row" style="margin:5%;">
+                <div class="col-sm-1 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-lg-6">
+                    {{ form_label(form.login) }}
+
+                    {{ form_widget(form.login, { 'attr': {'class': 'btn btn-default'} }) }}
+                </div>
+                <div class="col-sm-1 col-lg-3"></div>
+            </div>
+        </div>
+        <div class="col-sm-1 col-lg-3"></div>
+    </div>
+</section>
+        {{ form_end(form) }}
+        <!--</form>-->
+    {% endblock %}

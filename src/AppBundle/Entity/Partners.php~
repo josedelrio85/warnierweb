@@ -1,0 +1,113 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * Partners
+ */
+class Partners
+{
+    /**
+     * @var string
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     */
+    private $rutaimagen;
+
+    /**
+     * @var boolean
+     */
+    private $activo;
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Partners
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set rutaimagen
+     *
+     * @param string $rutaimagen
+     *
+     * @return Partners
+     */
+    public function setRutaimagen($rutaimagen)
+    {
+        $this->rutaimagen = $rutaimagen;
+
+        return $this;
+    }
+
+    /**
+     * Get rutaimagen
+     *
+     * @return string
+     */
+    public function getRutaimagen()
+    {
+        return $this->rutaimagen;
+    }
+
+    /**
+     * Set activo
+     *
+     * @param boolean $activo
+     *
+     * @return Partners
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+
+        return $this;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean
+     */
+    public function getActivo()
+    {
+        return $this->activo;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Imagenarticulos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ruta</th>
+                <th>Fecha</th>
+                <th>Activo</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imagenarticulo in imagenarticulos %}
+            <tr>
+                <td><a href="{{ path('imagenarticulo_show', { 'id': imagenarticulo.id }) }}">{{ imagenarticulo.ruta }}</a></td>
+                <td>{% if imagenarticulo.fecha %}{{ imagenarticulo.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if imagenarticulo.activo %}Yes{% else %}No{% endif %}</td>
+                <td>{{ imagenarticulo.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imagenarticulo_show', { 'id': imagenarticulo.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

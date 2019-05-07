@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="call-to-action">
+        <div class="container">
+            <div class="row">
+                <h1>Página no encontrada <{{status_code}}></h1>
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {# ... #}
+                {% endif %}
+
+                <p>La página solicitada no existe. Puede volver a la página principal<a href="{{ path('homepage') }}"> desde aquí</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

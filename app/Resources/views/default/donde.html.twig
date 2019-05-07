@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+Dónde encontrarnos - contacta con nosotoros - ven a conocernos - Warnier
+{% endblock %}
+
+
+{% block description %}
+<meta name="description" content="Encuéntranos en Betanzos o a través del teléfono o email indicados." />
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block richcard %}
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org/",
+          "@type": "LocalBusiness",
+          "name": "Warnier",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Venezuela 15-17 Bajo",
+            "addressLocality": "Betanzos",
+            "addressRegion": "A Coruña",
+            "postalCode": "15300"
+          },
+          "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "43.277904",
+              "longitude": "-8.209519"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "closes": "13:00:00" ,
+              "dayOfWeek": "http://schema.org/Saturday",
+              "opens": "10:00:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "closes": "20:00:00",
+              "dayOfWeek": "http://schema.org/Monday",
+              "opens": "09:00:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "closes": "20:00:00",
+              "dayOfWeek": "http://schema.org/Tuesday",
+              "opens": "09:00:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "closes": "20:00:00",
+              "dayOfWeek":  "http://schema.org/Wednesday",
+              "opens": "09:00:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "closes":  "20:00:00",
+              "dayOfWeek": "http://schema.org/Thursday",
+              "opens": "09:00:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "closes": "20:00:00",
+              "dayOfWeek":  "http://schema.org/Friday",
+              "opens": "09:00:00"
+            }
+        ],
+          "telephone": "981772120",
+          "url":"http://www.warnier.com",
+          "logo": "http://www.warnier.com/imagenes/warnier/nombreWarnier_320.png",
+          "image": "http://www.warnier.com/imagenes/warnier/nombreWarnier.png",
+          "priceRange": 0
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+
+<section class="call-to-action" data-aos="fade-zoom-in"
+	data-aos-offset="200" data-aos-easing="ease-in-sine"
+	data-aos-duration="600" >
+	<div class="container">
+		<div class="col-md-12 margen-donde" data-aos="fade-left">
+			<div id="googleMap"></div>
+		</div>
+
+		<div class="col-md-6 margen-donde" data-aos="fade-left">
+    		<adress>
+    			<h2>Dónde estamos</h2>
+    			<p>C\ Venezuela 15-17, Bajo</p>
+    			<p>Betanzos, A Coruña<p>
+    		</adress>
+		</div>		
+
+		<div class="col-md-6 margen-donde" data-aos="fade-left">
+			<h2>Llámanos</h2>
+			<p><span class="glyphicon glyphicon-phone glyphicon-small">981772120</p>
+			<p><span class="glyphicon glyphicon-envelope glyphicon-small" href="mailto:comercial@warnier.com">comercial@warnier.com</span></p>			
+		</div>
+
+	</div>
+</section>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+<script>
+
+    function initMap() {
+        var warnier = {lat: 43.2778263, lng: -8.20953540000005};
+        var map = new google.maps.Map(document.getElementById('googleMap'), {
+          zoom: 12,
+          center: warnier
+        });
+        var marker = new google.maps.Marker({
+          position: warnier,
+          map: map
+        });
+      }
+    
+</script>
+    
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWktkk9npqF3sRA2-zgfbckQdlg6nmgkc&callback=initMap"></script>
+{% endblock %}
