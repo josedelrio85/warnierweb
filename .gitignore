@@ -4,3 +4,4 @@ composer.phar
 npm-debug.log
 phpunit.xml.dist
 *.code-workspace
+/app/config/parameters*
