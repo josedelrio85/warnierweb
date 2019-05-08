@@ -190,8 +190,8 @@ class DefaultController extends Controller
     }
 
     /**
-     * Route("/evento", name="evento_log_mov")
-     * Method({"GET", "POST"})
+     * @Route("/evento", name="evento_log_mov")
+     * @Method({"GET", "POST"})
      */
     public function eventoAction(Request $query)
     {
