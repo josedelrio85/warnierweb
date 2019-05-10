@@ -255,5 +255,56 @@ class DefaultController extends Controller
     public function videoFlotanteAction(){
         return $this->render('default/videoFlotante.html.twig');
     }
+
+    /**
+     * @Route("/evento2019", name="evento_log_mov_2019")
+     * @Method({"GET", "POST"})
+     */
+    public function evento2019Action(Request $query)
+    {
+        
+        $form = $this->createForm(EventoType::class);
+        
+        $enviador = $this->getParameter('mailer_user');
+        $destinatario = $this->getParameter('destinatarioMailEvento');
+        
+        
+        if ($query->isMethod('POST')) {
+            $form->handleRequest($query);
+            
+            if ($form->isValid()) {
+                $mailer = $this->get('mailer');
+                $message = $mailer->createMessage()
+                ->setSubject('Solicitud registro evento movilidad')
+                ->setFrom($enviador)
+                ->setTo($destinatario)
+                ->setBody(
+                    $this->renderView(
+                        'default/eventoTemplate.html.twig',
+                        array(
+                            'ip' => $query->getClientIp(),
+                            'nombre' => $form->get('nombre')->getData()." ".$form->get('apellidos')->getData(),
+                            'empresa' => $form->get('empresa')->getData(),
+                            'email' => $form->get('email')->getData(),
+                            'telefono' => $form->get('telefono')->getData(),
+                            'cargo' => $form->get('cargo')->getData(),
+                            'direccion' => $form->get('direccion')->getData(),
+                            'poblacion' => $form->get('poblacion')->getData(),
+                            'codigopostal' => $form->get('codigopostal')->getData(),
+                            'provincia' => $form->get('provincia')->getData(),
+                        )
+                        )
+                    );
+                
+                $mailer->send($message);
+                
+                $query->getSession()->getFlashBag()->add('success', 'Tu solicitud de asistencia ha sido registrada. Gracias');
+            }
+        }
+        
+        return $this->render('default/evento2019.html.twig', array(
+            'form'   => $form->createView()
+        ));
+    }
     
 }
