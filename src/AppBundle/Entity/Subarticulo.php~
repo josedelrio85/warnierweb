@@ -282,28 +282,4 @@ class Subarticulo
     {
         return $this->recAsociado;
     }
-
-    /**
-     * Set isEvento
-     *
-     * @param integer $isEvento
-     *
-     * @return Subarticulo
-     */
-    public function setIsEvento($isEvento)
-    {
-        $this->isEvento = $isEvento;
-
-        return $this;
-    }
-
-    /**
-     * Get isEvento
-     *
-     * @return integer
-     */
-    public function getIsEvento()
-    {
-        return $this->isEvento;
-    }
 }

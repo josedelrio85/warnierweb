@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\imagenArticulo;
+use AppBundle\Entity\Imagenarticulo;
 use AppBundle\Entity\Subarticulo;
 use AppBundle\Entity\Noticia;
 use Symfony\Component\HttpFoundation\File\File;
@@ -162,7 +162,7 @@ class ArticuloController extends Controller {
         $articulo = new Articulo();
         $articulo->setActivo(true);
         
-        $imagenArticulo = new imagenArticulo();
+        $imagenArticulo = new Imagenarticulo();
         $imagenArticulo->setActivo($articulo->getActivo());
 
         $subarticulo = new Subarticulo();

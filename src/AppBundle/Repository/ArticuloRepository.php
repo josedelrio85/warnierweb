@@ -3,7 +3,7 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-
+use Doctrine\ORM\Query\ResultSetMapping;
 /**
  * ArticuloRepository
  *
@@ -29,7 +29,7 @@ class ArticuloRepository extends \Doctrine\ORM\EntityRepository {
         }
 
         $em = $this->getEntityManager();
-        $query = $em->createQuery('SELECT art FROM AppBundle:Articulo art LEFT JOIN AppBundle:imagenArticulo ia WHERE ia.idArticulo = art.id WHERE art.idSeccion = :idSeccion AND art.activo = :activo order by art.fecha desc')
+        $query = $em->createQuery('SELECT art FROM AppBundle:Articulo art LEFT JOIN AppBundle:Imagenarticulo ia WHERE ia.idArticulo = art.id WHERE art.idSeccion = :idSeccion AND art.activo = :activo order by art.fecha desc')
                 ->setParameter('idSeccion', $idSeccion)
                 ->setParameter('activo', 1);
         $resultado = $query->getResult();
@@ -41,7 +41,7 @@ class ArticuloRepository extends \Doctrine\ORM\EntityRepository {
 
         if ($idSeccion != null) {
             $em = $this->getEntityManager();
-            $query = $em->createQuery('select a FROM AppBundle:Articulo a LEFT JOIN AppBundle:imagenArticulo b WHERE b.idArticulo = a.id WHERE a.idSeccion = :idSeccion and a.mostrar = :mostrar')
+            $query = $em->createQuery('select a FROM AppBundle:Articulo a LEFT JOIN AppBundle:Imagenarticulo b WHERE b.idArticulo = a.id WHERE a.idSeccion = :idSeccion and a.mostrar = :mostrar')
                     ->setParameter('idSeccion', $idSeccion)
                     ->setParameter('mostrar', 1);
             $resultado = $query->getResult();
@@ -57,4 +57,28 @@ class ArticuloRepository extends \Doctrine\ORM\EntityRepository {
         return $resultado;
     }
 
+    public function getEvento() {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery('select a,b,s FROM AppBundle:Articulo a LEFT JOIN AppBundle:Imagenarticulo b WHERE b.idArticulo = a.id
+        LEFT JOIN AppBundle:Subarticulo s WHERE s.idArticulo = a.id WHERE s.isEvento = :isEvento')
+        ->setParameter('isEvento', 1);
+        
+        $resultado = $query->getResult();
+        $evento = null;
+        if(!empty($resultado)) {
+            $e = [
+                "Articulo" => $resultado[0],
+                "Imagenarticulo" => $resultado[1],
+                "Subarticulo" => $resultado[2],            
+            ];
+            $evento = [
+                "subartid" => $e["Subarticulo"]->getId(),
+                "rutaimg" => $e["Imagenarticulo"]->getRuta(),
+                "descripcion" => $e["Articulo"]->getContenidoBreve(),
+            ];
+        }
+        dump($evento);
+        return $evento;       
+    }
 }

@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * imagenArticulo
+ * Imagenarticulo
  *
- * @ORM\Table(name="imagenArticulo")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\imagenArticuloRepository")
+ * @ORM\Table(name="Imagenarticulo")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ImagenarticuloRepository")
  */
-class imagenArticulo
+class Imagenarticulo
 {
     /**
      * @var int
@@ -64,7 +64,7 @@ class imagenArticulo
      *
      * @param string $ruta
      *
-     * @return imagenArticulo
+     * @return Imagenarticulo
      */
     public function setRuta($ruta)
     {
@@ -88,7 +88,7 @@ class imagenArticulo
      *
      * @param \DateTime $fecha
      *
-     * @return imagenArticulo
+     * @return Imagenarticulo
      */
     public function setFecha($fecha)
     {
@@ -112,7 +112,7 @@ class imagenArticulo
      *
      * @param boolean $activo
      *
-     * @return imagenArticulo
+     * @return Imagenarticulo
      */
     public function setActivo($activo)
     {
@@ -136,7 +136,7 @@ class imagenArticulo
      *
      * @param integer $idArticulo
      *
-     * @return imagenArticulo
+     * @return Imagenarticulo
      */
     public function setIdArticulo($idArticulo)
     {

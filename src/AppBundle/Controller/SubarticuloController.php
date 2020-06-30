@@ -35,7 +35,7 @@ class SubarticuloController extends Controller
         if(!$subarticulo){
             throw $this->createNotFoundException('');
         }else{
-            $imagen = $em->getRepository('AppBundle:imagenArticulo')->findByIdArticulo($subarticulo[0]->getIdarticulo());
+            $imagen = $em->getRepository('AppBundle:Imagenarticulo')->findByIdArticulo($subarticulo[0]->getIdarticulo());
             $recAsociados = $em->getRepository('AppBundle:recAsociado')->recursosSubarticulo($subarticulo[0]->getId());
             
             return $this->render('subarticulo/show.html.twig', array(

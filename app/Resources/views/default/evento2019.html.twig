@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block description %}
-    <meta name="description" content="Evento logística y Movilidad 4.0 Pazo dos Escudos, Vigo, 5 de Junio de 2019" />
+    <meta name="description" content="{{evento.descripcion}}" />
 {% endblock %}
 
 {% block body %}
@@ -24,7 +24,7 @@
                 {% endfor %}
 
                 <div class="col-md-12">
-                    <img src="{{ asset('/imagenes/subida/406571c157f0b79c55687be3162067cc.jpeg') }}"  alt="Evento" style="width:100%;"/>
+                    <img src="{{ asset(evento.rutaimg) }}"  alt="Evento" style="width:100%;"/>
                 </div>
 
                 <div class="col-md-12">

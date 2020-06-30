@@ -79,7 +79,7 @@ class Articulo
 
     
     /**
-     * @ORM\OneToMany(targetEntity="imagenArticulo", mappedBy="idArticulo", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Imagenarticulo", mappedBy="idArticulo", cascade={"persist"})
      */
     private $imagenes;
     
@@ -309,7 +309,7 @@ class Articulo
     /**
      * Set imagenes
      *
-     * @param imagenArticulo
+     * @param Imagenarticulo
      * 
      * @return Articulo
      */
