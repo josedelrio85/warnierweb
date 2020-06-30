@@ -22,13 +22,15 @@ class DefaultController extends Controller
     	$movilidad = $em->getRepository('AppBundle:Articulo')->articulosPortada('2');
         $noticias = $em->getRepository('AppBundle:Articulo')->articulosPortada('4');
 
-    	$hayEvento = $this->getParameter('evento');
-        
+        $hayEvento = $this->getParameter('evento');
+        $evento = $em->getRepository('AppBundle:Articulo')->getEvento();
+        dump($evento);
     	return $this->render('default/prueba.html.twig', array(
     		'logistica' => $logistica,
     		'movilidad' => $movilidad,
-                'noticias' => $noticias,
-    	        'hayEvento' => $hayEvento
+            'noticias' => $noticias,
+            'hayEvento' => $hayEvento,
+            'evento' => $evento,
     	));
     }
     
@@ -57,12 +59,24 @@ class DefaultController extends Controller
     }
     
     
-    public function cabeceraEventoAction()
+    public function cabeceraEventoAction($subartid, $rutaimg, $descripcion)
     {
-        return $this->render('/default/cabeceraEvento.html.twig');
+        return $this->render('/default/cabeceraEvento.html.twig', array(
+            'subartid' => $subartid, 
+            'rutaimg' => $rutaimg,
+            'descripcion' => $descripcion,
+        ));
     }
     
-    
+    public function cabeceraEventoCDTICAction()
+    {
+        return $this->render('/default/cabeceraEventoAlt.html.twig', array(
+            'rutaimg' => 'portadacdtic.png',
+            'descripcion' => 'Almacéns xestionados por voz Vocollect. Warnier/JSV',
+            'href' => 'https://cdtic.xunta.gal/warnier',
+        ));
+    }
+
     /**
      * @Route("/aviso_legal", name="aviso_legal")
      */
@@ -302,8 +316,12 @@ class DefaultController extends Controller
             }
         }
         
+    	$em = $this->getDoctrine()->getManager();
+        $evento = $em->getRepository('AppBundle:Articulo')->getEvento();
+
         return $this->render('default/evento2019.html.twig', array(
-            'form'   => $form->createView()
+            'form'   => $form->createView(),
+            'evento' => $evento,
         ));
     }
     

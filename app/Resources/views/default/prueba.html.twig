@@ -18,9 +18,11 @@
     {% if hayEvento == 0 %}
         {{ render(controller('AppBundle:Default:cabeceraClasica')) }}
     {% else %}
-        {{ render(controller('AppBundle:Default:cabeceraEvento')) }}
+        {# {{ render(controller('AppBundle:Default:cabeceraEvento',
+         { 'subartid': evento.subartid, 'rutaimg': evento.rutaimg, 'descripcion': evento.descripcion }
+        )) }} #}
+        {{ render(controller('AppBundle:Default:cabeceraEventoCDTICAction')) }}
     {% endif %}
-
 
     <!-- glyphicon -->
     <section class="call-to-action" data-aos="fade-zoom-in"

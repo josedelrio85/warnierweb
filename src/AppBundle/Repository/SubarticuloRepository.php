@@ -13,7 +13,7 @@ class SubarticuloRepository extends \Doctrine\ORM\EntityRepository {
     public function subarticulo($idArt) {
 
         $em = $this->getEntityManager();
-        //$query = $em->createQuery('select a FROM AppBundle:Subarticulo a LEFT JOIN AppBundle:imagenArticulo b where b.idArticulo = a.idArticulo WHERE a.idArticulo = :idArt')->setParameter('idArt', $idArt);
+        //$query = $em->createQuery('select a FROM AppBundle:Subarticulo a LEFT JOIN AppBundle:Imagenarticulo b where b.idArticulo = a.idArticulo WHERE a.idArticulo = :idArt')->setParameter('idArt', $idArt);
         $query = $em->createQuery('select s FROM AppBundle:Subarticulo s WHERE s.idArticulo = :idArt')->setParameter('idArt', $idArt);
         $resultado = $query->getResult();
 

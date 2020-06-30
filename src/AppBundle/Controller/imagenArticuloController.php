@@ -8,14 +8,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
- * ImagenArticulo controller.
+ * Imagenarticulo controller.
  *
  * @Route("imagenarticulo")
  */
-class ImagenArticuloController extends Controller
+class ImagenarticuloController extends Controller
 {
     /**
-     * Lists all imagenarticulo entities.
+     * Lists all Imagenarticulo entities.
      *
      * @Route("/", name="imagenarticulo_index")
      * @Method("GET")
