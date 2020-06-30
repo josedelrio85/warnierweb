@@ -68,7 +68,7 @@ class DefaultController extends Controller
         ));
     }
     
-    public function cabeceraEventoCDTICAction()
+    public function cabeceraEventoAltAction()
     {
         return $this->render('/default/cabeceraEventoAlt.html.twig', array(
             'rutaimg' => 'portadacdtic.png',
